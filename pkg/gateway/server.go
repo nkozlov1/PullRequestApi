@@ -18,7 +18,6 @@ type Server struct {
 
 func NewServer(ctx context.Context, cfg *config.Config, cases *usecase.Cases) *Server {
 	r := gin.Default()
-
 	s := &Server{
 		Router: r,
 		HTTPServer: http.Server{
@@ -26,7 +25,6 @@ func NewServer(ctx context.Context, cfg *config.Config, cases *usecase.Cases) *S
 			Handler: r,
 		},
 	}
-
 	setupRouter(ctx, cfg, s.Router, cases)
 	return s
 }

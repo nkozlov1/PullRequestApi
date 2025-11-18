@@ -14,6 +14,8 @@ FROM alpine:latest
 WORKDIR /app
 
 COPY --from=builder /app/server .
+COPY --from=builder /app/docs /app/docs
+COPY --from=builder /app/.env /app/.env
 
 RUN chmod +x ./server
 

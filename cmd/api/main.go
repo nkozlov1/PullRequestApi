@@ -26,7 +26,6 @@ func main() {
 	}
 	log.Printf("Starting Service...")
 	log.Printf("Server Port: %d", cfg.Server.Port)
-	log.Printf("Database URL: %s", cfg.DBUrl())
 
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer cancel()
@@ -41,7 +40,6 @@ func main() {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
 	defer pool.Close()
-
 	cases := usecase.Setup(cfg, pool)
 
 	s := gateway.NewServer(ctx, cfg, cases)

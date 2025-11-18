@@ -7,11 +7,15 @@ import (
 	"Avito/pkg/gateway/user"
 	"Avito/pkg/usecase"
 	"context"
+	"log"
 
 	"github.com/gin-gonic/gin"
 )
 
 func setupRouter(ctx context.Context, cfg *config.Config, r *gin.Engine, cases *usecase.Cases) {
+	if err := RegisterSwagger(ctx, r, cfg, "./docs/openapi.yml.tpl"); err != nil {
+		log.Fatalf("swagger init: %v", err)
+	}
 	teamGroup := r.Group("/team")
 	{
 		teamGroup.POST("/add", team.CreateTeamHandler(cases))

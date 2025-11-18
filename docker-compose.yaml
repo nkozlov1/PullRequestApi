@@ -50,7 +50,7 @@ services:
       DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?sslmode=disable
       HTTP_PORT: ${HTTP_PORT}
     ports:
-      - "${HTTP_PORT}:8080"
+      - "${HTTP_PORT}:${HTTP_PORT}"
     restart: unless-stopped
 
 volumes:

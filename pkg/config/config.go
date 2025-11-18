@@ -26,7 +26,7 @@ type Config struct {
 func Load(envFile string) (*Config, error) {
 	err := godotenv.Load(envFile)
 	if err != nil {
-		slog.Info("no .env file, parsed exported variables")
+		slog.Info("no .env file, parsed exported variables", err)
 	}
 	c := &Config{}
 	err = envconfig.Process("", c)
